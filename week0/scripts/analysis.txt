@@ -1,0 +1,36 @@
+1. What happens when you close one or the other?
+answer:
+        If I turned off the listener then talker is continuously trying to 
+    publish but it can't do that. When I turned off the talker then listener 
+    doesn't hear anyhting. 
+
+2. What happens when you close the core node?
+answer: 
+        Suppose the talker and the listener are continuously working and at that moment
+    I turn off the core node then it actually doesn't make any impact on the communication
+    on these two ongoing talker and listener node. But, if I stop one of them
+    (listener or talker) and then again try to run then it actually can't able to 
+    reconnect with other node. 
+3. What happens when you change the rate for the talker?
+    default is 10
+    rate = 1
+    rate = 100
+    rate = 100000
+    rate = 0.1
+    rate = 0.001
+
+answer: 
+        It works like frequency. If I set 10 then the talker actually generate 10 message in
+    a second and send to listener. If I set 0.1 then the talker actually generate 1 message in
+    every 10 seconds and send it to listener. So, the rate actually represents number of message
+    in each second. 
+
+4. What happens when you start 2 talker nodes? & What happens when you start 2 listener nodes?
+answer: 
+        Both talker actually generate message and send then to each listener. 
+    But two listener actually get the message from both talker. 
+    Talker 1 and talker 2 individually generate message and send the messages to both 
+    listener. 
+
+
+
