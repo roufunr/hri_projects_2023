@@ -3,7 +3,13 @@ import rospy
 from sensor_msgs.msg import LaserScan
 
 def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + 'I heard %s', data.angle_increment)
+    ranges = data.ranges
+    min = 9999
+    for range in ranges:
+        if int(range) < min:
+            min = int(range)
+        
+    rospy.loginfo(rospy.get_caller_id() + 'now the minimum range is %s', str(min))
 
 def listener():
 
