@@ -4,6 +4,11 @@
 	<param name="use_sim_time" type="str" value="true"/>
 
 	<!-- this loads a ROS node -->
-	<node pkg="stage_ros" type="stageros" name="stage" args="$(find week2)/world/person.world"/>
+	<node 
+		pkg="stage_ros" 
+		type="stageros" 
+		name="stage" 
+		args="$(find week2)/world/person.world"
+	/>
 
 </launch>
