@@ -1,0 +1,107 @@
+orin@orin-Latitude-7480:~/hri2023$ rosnode list
+/leg_detector
+/rosout
+/stage
+orin@orin-Latitude-7480:~/hri2023$ rostopic list
+/base_pose_ground_truth
+/base_scan
+/clock
+/cmd_vel
+/leg_detector/parameter_descriptions
+/leg_detector/parameter_updates
+/leg_tracker_measurements
+/odom
+/people_tracker_filter
+/people_tracker_measurements
+/rosout
+/rosout_agg
+/tf
+/tf_static
+/visualization_marker
+
+
+orin@orin-Latitude-7480:~/hri2023$ rosnode info leg_detector
+--------------------------------------------------------------------------------
+Node [/leg_detector]
+Publications: 
+ * /leg_detector/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /leg_detector/parameter_updates [dynamic_reconfigure/Config]
+ * /leg_tracker_measurements [people_msgs/PositionMeasurementArray]
+ * /people_tracker_measurements [people_msgs/PositionMeasurementArray]
+ * /rosout [rosgraph_msgs/Log]
+ * /visualization_marker [visualization_msgs/Marker]
+
+Subscriptions: 
+ * /base_scan [sensor_msgs/LaserScan]
+ * /clock [rosgraph_msgs/Clock]
+ * /people_tracker_filter [unknown type]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [unknown type]
+
+Services: 
+ * /leg_detector/get_loggers
+ * /leg_detector/set_logger_level
+ * /leg_detector/set_parameters
+
+
+contacting node http://orin-Latitude-7480:41603/ ...
+Pid: 5566
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (41817 - 127.0.0.1:50006) [10]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /stage (http://orin-Latitude-7480:40485/)
+    * direction: inbound (57358 - orin-Latitude-7480:59979) [13]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /stage (http://orin-Latitude-7480:40485/)
+    * direction: inbound (57362 - orin-Latitude-7480:59979) [15]
+    * transport: TCPROS
+ * topic: /base_scan
+    * to: /stage (http://orin-Latitude-7480:40485/)
+    * direction: inbound (57376 - orin-Latitude-7480:59979) [16]
+    * transport: TCPROS
+
+
+
+orin@orin-Latitude-7480:~/hri2023$ rosnode info stage
+--------------------------------------------------------------------------------
+Node [/stage]
+Publications: 
+ * /base_pose_ground_truth [nav_msgs/Odometry]
+ * /base_scan [sensor_msgs/LaserScan]
+ * /clock [rosgraph_msgs/Clock]
+ * /odom [nav_msgs/Odometry]
+ * /rosout [rosgraph_msgs/Log]
+ * /tf [tf2_msgs/TFMessage]
+
+Subscriptions: 
+ * /cmd_vel [unknown type]
+
+Services: 
+ * /reset_positions
+ * /stage/get_loggers
+ * /stage/set_logger_level
+
+
+contacting node http://orin-Latitude-7480:40485/ ...
+Pid: 5263
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (59979 - 127.0.0.1:48116) [16]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /leg_detector
+    * direction: outbound (59979 - 127.0.0.1:57362) [20]
+    * transport: TCPROS
+ * topic: /base_scan
+    * to: /leg_detector
+    * direction: outbound (59979 - 127.0.0.1:57376) [21]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /leg_detector
+    * direction: outbound (59979 - 127.0.0.1:57358) [19]
+    * transport: TCPROS
