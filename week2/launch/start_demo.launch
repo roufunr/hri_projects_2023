@@ -1,3 +1,0 @@
- <launch>
-    <node pkg="learning_tf2" type="turtle_tf2_listener.py" name="listener" output="screen"/>
-  </launch>
