@@ -37,14 +37,12 @@ def avoid_obstacle(msg):
 
 
 def robot_follow_person():
-    rospy.init_node('robot_follow_person')
+    jump()
     tf_buffer = tf2_ros.Buffer()
     tf_listener = tf2_ros.TransformListener(tf_buffer)
     rate = rospy.Rate(10)  # 100 Hz
     while not rospy.is_shutdown():
         try:
-            
-            
             try:
                 trans = tf_buffer.lookup_transform('robot', 'person', rospy.Time())
             except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
@@ -59,20 +57,24 @@ def robot_follow_person():
             # Publish the Twist message to control the robot
             #cmd_vel_publisher.publish(msg)
             avoid_obstacle(msg)
-            
-
-            
-
+    
         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
             # Handle TF lookup exceptions
             rospy.logwarn("TF lookup exception")
+            rate.sleep()
 
-        rate.sleep()
+def jump(): 
+    msg = Twist()
+    msg.angular.z = 0
+    msg.linear.x = 1.0
+    cmd_vel_publisher.publish(msg)
 
 if __name__ == '__main__':
     try:
+        rospy.init_node('robot_follow_person')
         cmd_vel_publisher = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
         laser_sub = rospy.Subscriber('/base_scan', LaserScan, laser_callback)
+        #jump()
         robot_follow_person()
     except rospy.ROSInterruptException:
         pass
