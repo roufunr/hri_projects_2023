@@ -16,5 +16,5 @@ run_in_terminal "source ~/hri2023/devel/setup.bash && rosrun week2 robot_broadca
 sleep 2  # Delay for 2 seconds
 run_in_terminal "source ~/hri2023/devel/setup.bash && rosrun week2 person_broadcaster.py"
 sleep 2  # Delay for 2 seconds
-run_in_terminal "source ~/hri2023/devel/setup.bash && rosrun week2 tf_listener.py"
+run_in_terminal "source ~/hri2023/devel/setup.bash && rosrun week2 listener.py"
 sleep 2  # Delay for 2 seconds
