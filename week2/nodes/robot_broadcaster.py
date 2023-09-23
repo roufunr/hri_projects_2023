@@ -25,7 +25,6 @@ if __name__ == '__main__':
     tf_broadcaster = tf2_ros.TransformBroadcaster()
     robot_topic = "/base_pose_ground_truth"  
     rospy.Subscriber(robot_topic, Odometry, robot_movement_callback)
-
     rospy.spin()
 
 
