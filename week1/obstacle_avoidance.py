@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 from sensor_msgs.msg import LaserScan
@@ -18,9 +18,9 @@ def laser_callback(laser_data):
         right_distances = sum(laser_data.ranges[len(laser_data.ranges)//2:])
         
         if left_distances < right_distances:
-            twist_msg.angular.z = 0.5  # Turn right
+            twist_msg.angular.z = 0.0873  # Turn right
         else:
-            twist_msg.angular.z = -0.5  # Turn left
+            twist_msg.angular.z = -0.0873  # Turn left
     else:
         twist_msg.angular.z = 0.0  # No turn
 
