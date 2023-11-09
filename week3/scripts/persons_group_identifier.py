@@ -150,7 +150,7 @@ def publish_persons_groups(publisher):
 def main():
     rospy.init_node('persons_group_detector', anonymous=True)
     groups_publisher = rospy.Publisher("/robot_0/detected_groups", PositionMeasurementArray, queue_size=10)
-    persons_position_subscriber = rospy.Subscriber("/people_tracker_measurements", PositionMeasurementArray, people_tracker_measurements_callback)
+    rospy.Subscriber("/people_tracker_measurements", PositionMeasurementArray, people_tracker_measurements_callback)
     publish_persons_groups(groups_publisher)
 
 if __name__=="__main__":
