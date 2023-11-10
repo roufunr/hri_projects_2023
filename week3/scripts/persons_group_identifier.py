@@ -77,7 +77,7 @@ def is_in_line(data, group):
         slope = get_slope(persons[group[i-1]], persons[group[i]])
         slopes.append(slope)
     for i in range(1, len(slopes)):
-        delta_slope = abs(slopes[i-1], slopes[i])
+        delta_slope = abs(slopes[i-1] - slopes[i])
         if delta_slope > slope_tolerance:
             return False
     return True
@@ -88,7 +88,7 @@ def is_in_circle(data, group):
     max_distant_point_idx = get_max_distant_points(data, group) # return two points of diameter
     center = get_midpoint(data.people[max_distant_point_idx[0]], data.people[max_distant_point_idx[1]])
     radius = get_distance(data.people[max_distant_point_idx[0]], data.people[max_distant_point_idx[1]]) / 2
-    points = get_all_persons_coordinate(data, group)
+    points = get_all_persons_coordinate(group, data)
     total_persons_in_group = len(points)
     for i in range(total_persons_in_group):
         x1 = center[0]
@@ -144,8 +144,9 @@ def publish_persons_groups(publisher):
                         person_data = copy.deepcopy(current_data.people[person_idx])
                         person_data.name = "other_" + str(group_idx) + "_person_" + person_data.name.replace("Person", "")
                         group_data.people.append(person_data)
+                rospy.loginfo("PUBLISHED " + str(group_data))
                 publisher.publish(group_data)
-            rospy.sleep(0.25)
+             rospy.sleep(0.25)
 
 def main():
     rospy.init_node('persons_group_detector', anonymous=True)
