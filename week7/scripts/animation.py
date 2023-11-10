@@ -2,8 +2,7 @@
 
 import rospy
 from sensor_msgs.msg import JointState
-import time
-import numpy as np
+
 
 def send_joint_state(joint_names, positions):
     joint_state_msg = JointState()
@@ -37,8 +36,6 @@ def animate_keyframes(initial_state, final_state, num_steps):
     # Interpolate between initial and final states
     interpolated_states = interpolate_states(initial_state, final_state, num_steps)
 
-    # Create a ROS node
-    rospy.init_node('joint_state_publisher', anonymous=True)
 
     # Create a publisher for the JointState messages
     global pub
@@ -50,12 +47,14 @@ def animate_keyframes(initial_state, final_state, num_steps):
     # Publish each interpolated state with a delay
     for interpolated_state in interpolated_states:
         send_joint_state(joint_names, interpolated_state)
-        rospy.sleep(2)  # Adjust the delay as needed
+        rospy.sleep(0.1)  # Adjust the delay as needed
 
     rospy.loginfo("Keyframe animation completed.")
 
 if __name__ == '__main__':
     try:
+        rospy.init_node('animator', anonymous=True)
+
         # Define the number of steps for interpolation
         num_steps = 10  # You can adjust this value
 
@@ -76,6 +75,10 @@ if __name__ == '__main__':
                        0.5828411270999999, 0.22537723459999998, 0.5828411270999999, 0.22537723459999998, 0.5828411270999999,
                        0.22537723459999998, 0.22537723459999998, 0.5828411270999999, 0.5828411270999999, 0.22537723459999998]
 
-        animate_keyframes(initial_state, final_state, num_steps)
+        rate = rospy.Rate(10)
+        while not rospy.is_shutdown():
+            animate_keyframes(initial_state, final_state, num_steps)
+            rate.sleep()
+        
     except rospy.ROSInterruptException:
         pass
