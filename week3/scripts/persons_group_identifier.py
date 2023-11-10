@@ -146,7 +146,7 @@ def publish_persons_groups(publisher):
                         group_data.people.append(person_data)
                 rospy.loginfo("PUBLISHED " + str(group_data))
                 publisher.publish(group_data)
-             rospy.sleep(0.25)
+                rospy.sleep(0.25)
 
 def main():
     rospy.init_node('persons_group_detector', anonymous=True)
