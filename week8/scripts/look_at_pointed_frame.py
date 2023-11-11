@@ -7,7 +7,7 @@ from geometry_msgs.msg import TransformStamped
 import math
 from sensor_msgs.msg import JointState
 
-TOTAL_STEPS = 20
+TOTAL_STEPS = 10
 
 def get_ith_state(i, states):
     ith_state = {}
@@ -45,7 +45,7 @@ def looker(rate, del_x, del_y, del_z, pub):
 def look_at_the_point(pub):
     tf_buffer = tf2_ros.Buffer()
     tf_listener = tf2_ros.TransformListener(tf_buffer)
-    rate = rospy.Rate(10)  # 100 Hz
+    rate = rospy.Rate(10)  # 10 Hz
     while not rospy.is_shutdown():
         try: 
             head_frame = tf_buffer.lookup_transform("base_link", "Head", rospy.Time())
