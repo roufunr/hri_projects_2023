@@ -1,0 +1,7 @@
+We simulated the same experiment explained in this paper (paper.pdf) and we used this dataset and it's description given in readme.txt file. 
+In this experiment, we only worked on these joint datas to observe the movement of NAO robots. 
+I've attached a sample.csv with this. After getting the result from DL model, we ran the data on NAO robot using code.py. 
+After implementing this, we take survey data from 20 people. And this is in survey.pdf. 
+
+1. Generate a 2-3 page report that explains the experiment as well as adds the chart to the report and give a proper conclusion based on how much we can replicate the mentioned paper. 
+2. Generate a short pptx which contains experiment design, dataset description, survey questions, survey result anaylsis and conclusion. 
